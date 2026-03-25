@@ -4,7 +4,6 @@ body { background-color: #f0f0f0; font-family: 'NanumDongHwaDdoBag', 'Noto Sans 
 /* 모바일 래퍼 */
 @font-face {
     font-family: 'NanumDongHwaDdoBag';
-    src: url('./fonts/NanumDongHwaDdoBag.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
