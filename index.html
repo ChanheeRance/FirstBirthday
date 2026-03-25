@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>찬희의 첫 생일에 초대합니다</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link href="https://hangeul.pstatic.net/hangeul_static/css/NanumDongHwaDdoBag.css" rel="stylesheet">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>간단한 지도 표시하기</title>
+    
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=mbxmxowbpv"></script>
+    <script src="script.js"></script>
 </head>
+
 <body>
     <div class="wrap">
-        
+
         <section id="section-main">
             <div class="main-visual">
                 <img src="./images/main_1.jpg" alt="메인 이미지" class="main-image">
             </div>
-            
+
             <div class="main-info">
                 <h1 class="baby-name"></h1>
                 <p class="event-time"></p>
@@ -44,11 +53,11 @@
             <h2 class="section-title">돌잔치 안내</h2>
             <p class="calendar-date">2026.04.25 토요일 오전 11:30</p>
             <p class="calendar-place">플로렌스 오목교점</p>
-            
+
             <div class="calendar-wrap">
                 <h3>4월</h3>
                 <div id="calendar-grid" class="calendar-grid">
-                    </div>
+                </div>
             </div>
             <p id="d-day-text" class="d-day-text"></p>
         </section>
@@ -56,43 +65,33 @@
         <section id="section-growth" class="section-padding">
             <h2 class="section-title">성장일기</h2>
             <div class="timeline" id="growth-timeline">
-                </div>
+            </div>
         </section>
 
         <section id="section-gallery" class="section-padding">
             <h2 class="section-title">갤러리</h2>
             <div class="gallery-grid" id="gallery-preview">
-                </div>
+            </div>
             <button class="btn-outline" onclick="openGalleryModal()">사진 더보기</button>
         </section>
 
         <section id="section-map" class="section-padding">
             <h2 class="section-title">오시는 길</h2>
-            <div class="map-iframe">
-                <iframe src="https://m.map.naver.com/" width="100%" height="250" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+            <div id="map"
+                style="width:100%; height:250px; border-radius:8px; overflow:hidden; margin-bottom:15px; background-color:#eee;">
             </div>
+
             <div class="map-buttons">
-                <button class="btn-map naver" onclick="window.open('https://map.naver.com/')">네이버 지도</button>
-                <button class="btn-map kakao" onclick="window.open('https://map.kakao.com/')">카카오 맵</button>
-            </div>
-            <div class="map-info">
-                <dl>
-                    <dt>주소</dt>
-                    <dd>인천 계양대로 164</dd>
-                    <dt>자가용 이용시</dt>
-                    <dd>계양 IC 이용</dd>
-                    <dt>버스 이용시</dt>
-                    <dd>64번 - 경인교대역 하차<br>30번 - 작전역 하차 15분 도보</dd>
-                    <dt>지하철 이용시</dt>
-                    <dd>인천 1호선 경인교대역 2번 출구</dd>
-                </dl>
+                <button class="btn-map naver" onclick="window.open('https://naver.me/Fmf6QJSm')">네이버 지도</button>
+                <button class="btn-map kakao" onclick="window.open('https://place.map.kakao.com/8067878')">카카오맵</button>
             </div>
         </section>
 
         <section id="section-comments" class="section-padding">
             <h2 class="section-title">찬희의 생일을 축하해주세요!</h2>
             <div class="comment-list" id="comment-list">
-                </div>
+            </div>
             <div class="comment-buttons">
                 <button class="btn-outline" onclick="openModal('commentModal')">작성하기</button>
             </div>
@@ -105,7 +104,7 @@
                 계좌번호를 기재하였습니다.<br>
                 넓은 마음으로 양해 부탁드립니다.
             </p>
-            
+
             <div class="account-box">
                 <div class="account-header" onclick="toggleAccount('father-acc')">아빠 계좌번호 <span>▼</span></div>
                 <div class="account-body" id="father-acc">
@@ -190,11 +189,10 @@
                 <label><input type="radio" name="attend" value="불참"> 마음으로 축하할게요</label>
                 <input type="text" placeholder="성함">
                 <input type="number" placeholder="동행 인원수">
-                <button class="btn-primary" style="width:100%" onclick="closeModal('rsvpModal'); alert('전달되었습니다.')">보내기</button>
+                <button class="btn-primary" style="width:100%"
+                    onclick="closeModal('rsvpModal'); alert('전달되었습니다.')">보내기</button>
             </div>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
