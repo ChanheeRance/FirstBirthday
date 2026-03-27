@@ -80,3 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
         initNaverMap();
     }
 });
+// [수정] 성장일기 생성 (애플 스타일 가로 카드 스와이프)
+function buildGrowth() {
+    const container = document.getElementById('growth-slider');
+    let html = '';
+    
+    // 성장 데이터 배열을 순회하며 카드 생성
+    growthData.forEach((item) => {
+        html += `
+            <div class="growth-card">
+                <img src="./images/${item.img}" alt="${item.title}" onerror="this.src='https://via.placeholder.com/300x220?text=Image'">
+                <div class="growth-card-info">
+                    <p class="date">${item.date}</p>
+                    <p class="title">${item.title}</p>
+                </div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}

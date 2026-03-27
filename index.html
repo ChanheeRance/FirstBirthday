@@ -49,25 +49,57 @@
             <button class="btn-primary" onclick="openModal('contactModal')">연락하기</button>
         </section>
 
-        <section id="section-calendar" class="section-padding">
+<section id="section-calendar" class="section-padding">
             <h2 class="section-title">돌잔치 안내</h2>
             <p class="calendar-date">2026.04.25 토요일 오전 11:30</p>
             <p class="calendar-place">플로렌스 오목교점</p>
-
-            <div class="calendar-wrap">
+            
+            <div class="calendar-wrap apple-style">
                 <h3>4월</h3>
                 <div id="calendar-grid" class="calendar-grid">
-                </div>
+                    </div>
             </div>
             <p id="d-day-text" class="d-day-text"></p>
         </section>
 
         <section id="section-growth" class="section-padding">
             <h2 class="section-title">성장일기</h2>
-            <div class="timeline" id="growth-timeline">
-            </div>
+            <div class="growth-slider" id="growth-slider">
+                </div>
         </section>
 
+<div id="contactModal" class="modal">
+        <div class="modal-content bottom-sheet">
+            <div class="drag-handle"></div>
+            <h3 class="sheet-title">마음 전하기</h3>
+            
+            <div class="contact-box-wrap">
+                <div class="contact-box">
+                    <div class="contact-info">
+                        <span class="role">아빠</span>
+                        <span class="name">정헌규</span>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="tel:01023254861" class="btn-icon call">📞</a>
+                        <a href="sms:01023254861" class="btn-icon msg">✉️</a>
+                    </div>
+                </div>
+                
+                <div class="contact-box">
+                    <div class="contact-info">
+                        <span class="role">엄마</span>
+                        <span class="name">박미래</span>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="tel:01051865538" class="btn-icon call">📞</a>
+                        <a href="sms:01051865538" class="btn-icon msg">✉️</a>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-close-sheet" onclick="closeModal('contactModal')">닫기</button>
+        </div>
+    </div>
+    
         <section id="section-gallery" class="section-padding">
             <h2 class="section-title">갤러리</h2>
             <div class="gallery-grid" id="gallery-preview">
