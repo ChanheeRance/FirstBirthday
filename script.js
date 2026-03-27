@@ -247,3 +247,13 @@ function addComment() {
     document.getElementById('guest-msg').value = '';
     closeModal('commentModal');
 }
+
+// ====================================
+// 모달 외부(어두운 배경) 클릭 시 닫기 기능
+// ====================================
+window.addEventListener('click', function(event) {
+    // 클릭한 요소가 'modal' 클래스를 가진 어두운 배경 자체일 경우
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
+});
