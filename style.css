@@ -1,12 +1,15 @@
 /* 기본 설정 */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background-color: #f0f0f0; font-family: 'NanumDongHwaDdoBag', 'Noto Sans KR', sans-serif; font-size: 21px; color: #333; line-height: 1.6; }
-/* 모바일 래퍼 */
+
+/* 폰트 상대경로 수정 */
 @font-face {
     font-family: 'NanumDongHwaDdoBag';
+    src: url('./font/NanumDongHwaDdoBag.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 .wrap {
     max-width: 480px;
     margin: 0 auto;
@@ -14,79 +17,41 @@ body { background-color: #f0f0f0; font-family: 'NanumDongHwaDdoBag', 'Noto Sans 
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     overflow: hidden;
 }
+
 /* 공통 섹션 스타일 */
 .section-padding { padding: 50px 20px; text-align: center; border-bottom: 1px solid #eee; }
 .section-title { font-size: 30px; font-weight: 500; margin-bottom: 30px; color: #333; }
 .sub-title { font-size: 28px; margin-bottom: 10px; }
 
 /* 공통 버튼 스타일 */
-.btn-primary {
-    background-color: #0056b3; color: #fff; border: none; padding: 12px 30px;
-    border-radius: 8px; font-size: 26px; cursor: pointer; display: inline-block;
-}
-.btn-outline {
-    background-color: #fff; color: #0056b3; border: 1px solid #0056b3; padding: 12px 30px;
-    border-radius: 8px; font-size: 26px; cursor: pointer; display: inline-block;
-}
+.btn-primary { background-color: #0056b3; color: #fff; border: none; padding: 12px 30px; border-radius: 8px; font-size: 26px; cursor: pointer; display: inline-block; }
+.btn-outline { background-color: #fff; color: #0056b3; border: 1px solid #0056b3; padding: 12px 30px; border-radius: 8px; font-size: 26px; cursor: pointer; display: inline-block; }
 
-/* =========================================
-   1. 메인 섹션 (메인 이미지) 
-   ========================================= */
+/* 메인 섹션 */
 #section-main { text-align: center; padding-bottom: 40px; }
-.main-visual {
-    position: relative;
-    width: 100%;
-}
-.main-image { 
-    width: 100%; 
-    display: block; 
-}
-
+.main-visual { position: relative; width: 100%; }
+.main-image { width: 100%; display: block; }
 .main-info { margin-top: 20px; }
 .baby-name { font-size: 26px; color: #1e88e5; font-weight: 700; margin-bottom: 10px; font-family: 'NanumDongHwaDdoBag', sans-serif; }
 .event-time, .event-place { font-size: 16px; color: #555; }
 .parents-name { margin-top: 20px; font-size: 15px; }
 .dot { color: #ccc; margin: 0 5px; }
 
-/* 2. 초대 인사말 */
+/* 초대 인사말 */
 .greeting-text { font-size: 15px; line-height: 2.2; margin-bottom: 30px; color: #444; }
 .parents-sign { margin-bottom: 30px; font-size: 16px; }
 
-/* 3. 캘린더 */
+/* 캘린더 */
 .calendar-date { font-size: 16px; font-weight: 500; }
 .calendar-place { font-size: 15px; color: #666; margin-bottom: 30px; }
-.calendar-wrap { margin-bottom: 20px; }
-.calendar-grid {
-    display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 15px; text-align: center;
-}
-.cal-day { font-size: 14px; padding: 5px 0; }
-.cal-day.sun { color: red; }
-.cal-day.sat { color: blue; }
-.cal-day.dday { background-color: #0056b3; color: #fff; border-radius: 50%; font-weight: bold; }
 .d-day-text { font-size: 16px; margin-top: 20px; }
 .d-day-text span { color: red; font-weight: bold; }
 
-/* 4. 성장일기 */
-.timeline { position: relative; padding-left: 30px; text-align: left; }
-.timeline::before {
-    content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background-color: #ccc;
-}
-.timeline-item { position: relative; margin-bottom: 30px; display: flex; align-items: center; }
-.timeline-dot {
-    position: absolute; left: -26px; top: 15px; width: 12px; height: 12px;
-    background-color: #0056b3; border-radius: 50%; border: 3px solid #fff;
-}
-.timeline-img { width: 80px; height: 80px; object-fit: cover; border-radius: 10px; margin-right: 15px; }
-.timeline-info p.date { font-size: 12px; color: #888; margin-bottom: 5px; }
-.timeline-info p.title { font-size: 15px; font-weight: 500; }
-
-/* 5. 갤러리 */
-.gallery-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px;
-}
+/* 갤러리 */
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
 .gallery-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; cursor: pointer; }
 
-/* 6. 오시는 길 */
+/* 오시는 길 */
 .map-iframe { background: #eee; height: 250px; margin-bottom: 15px; border-radius: 8px; overflow: hidden; }
 .map-buttons { display: flex; gap: 10px; margin-bottom: 30px; }
 .btn-map { flex: 1; padding: 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer; }
@@ -96,14 +61,14 @@ body { background-color: #f0f0f0; font-family: 'NanumDongHwaDdoBag', 'Noto Sans 
 .map-info dt { font-weight: bold; margin-top: 15px; font-size: 14px; color: #333; }
 .map-info dd { font-size: 14px; color: #666; margin-left: 0; margin-top: 5px; line-height: 1.4; }
 
-/* 7. 댓글 */
+/* 댓글 */
 .comment-list { text-align: left; margin-bottom: 20px; }
 .comment-item { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 10px; }
 .comment-head { display: flex; justify-content: space-between; font-size: 13px; color: #888; margin-bottom: 5px; }
 .comment-head strong { color: #333; font-size: 14px; }
 .comment-body { font-size: 14px; color: #444; }
 
-/* 8. 계좌 & 공유 */
+/* 계좌 & 공유 */
 .account-notice { font-size: 13px; color: #666; margin-bottom: 20px; }
 .account-box { background: #f8f9fa; border: 1px solid #eee; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
 .account-header { padding: 15px; font-size: 15px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; }
@@ -123,10 +88,6 @@ body { background-color: #f0f0f0; font-family: 'NanumDongHwaDdoBag', 'Noto Sans 
 .close { position: absolute; right: 20px; top: 15px; font-size: 24px; font-weight: bold; cursor: pointer; color: #aaa; }
 .close:hover { color: #333; }
 
-/* 연락처 팝업 */
-.contact-row { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #eee; }
-.contact-row button { width: 40px; height: 40px; border-radius: 50%; border: none; background: #eee; cursor: pointer; }
-
 /* 갤러리 팝업 */
 .gallery-modal-content { background: transparent; box-shadow: none; max-width: 500px; text-align: center; margin: 10% auto; }
 .slider-container { position: relative; width: 100%; height: 60vh; background: #000; display: flex; align-items: center; justify-content: center; border-radius: 10px; overflow: hidden; }
@@ -141,118 +102,36 @@ body { background-color: #f0f0f0; font-family: 'NanumDongHwaDdoBag', 'Noto Sans 
 .rsvp-form label { display: block; margin-bottom: 10px; text-align: left; }
 
 /* =========================================
-   애플(iOS) 스타일 UI 리뉴얼 반영
+   애플(iOS) 스타일 UI 적용
    ========================================= */
 
-/* 1. 캘린더 (애플 캘린더 스타일) */
-.calendar-wrap.apple-style {
-    background: #fff;
-    border-radius: 20px;
-    padding: 25px 20px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-    margin: 20px auto;
-}
-.calendar-wrap.apple-style h3 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #1c1c1e;
-}
-.calendar-grid { margin-top: 10px; }
+/* 1. 캘린더 */
+.calendar-wrap.apple-style { background: #fff; border-radius: 20px; padding: 25px 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.06); margin: 20px auto; }
+.calendar-wrap.apple-style h3 { font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #1c1c1e; }
+.calendar-grid { margin-top: 10px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; text-align: center; }
 .cal-day { font-size: 15px; padding: 10px 0; color: #3a3a3c; }
 .cal-day.sun { color: #ff3b30; }
 .cal-day.sat { color: #007aff; }
-.cal-day.dday {
-    background-color: #ff2d55;
-    color: #fff;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    padding: 0;
-    margin: 0 auto;
-    font-weight: 700;
-    box-shadow: 0 4px 10px rgba(255, 45, 85, 0.4);
-}
+.cal-day.dday { background-color: #ff2d55; color: #fff; border-radius: 50%; width: 36px; height: 36px; line-height: 36px; padding: 0; margin: 0 auto; font-weight: 700; box-shadow: 0 4px 10px rgba(255, 45, 85, 0.4); }
 
 /* 2. 성장일기 (가로 스와이프 카드형) */
-.growth-slider {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 16px;
-    padding: 20px 0;
-    -webkit-overflow-scrolling: touch;
-}
-.growth-slider::-webkit-scrollbar { display: none; /* 스크롤바 숨김 */ }
-.growth-card {
-    flex: 0 0 75%; /* 화면의 75% 차지하여 다음 카드가 살짝 보이게 유도 */
-    scroll-snap-align: center;
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    overflow: hidden;
-    text-align: center;
-    padding-bottom: 15px;
-}
-.growth-card img {
-    width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-}
+.growth-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; padding: 20px 0; -webkit-overflow-scrolling: touch; }
+.growth-slider::-webkit-scrollbar { display: none; }
+.growth-card { flex: 0 0 75%; scroll-snap-align: center; background: #fff; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); overflow: hidden; text-align: center; padding-bottom: 15px; }
+.growth-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
 .growth-card-info { padding: 15px 10px 5px; }
 .growth-card-info .date { font-size: 13px; color: #8e8e93; font-weight: 500; }
 .growth-card-info .title { font-size: 17px; font-weight: 700; color: #1c1c1e; margin-top: 5px; }
 
 /* 3. 연락하기 팝업 (바텀 시트 스타일) */
-.modal-content.bottom-sheet {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 24px 24px 0 0;
-    padding: 25px 20px 40px;
-    animation: slideUp 0.3s ease-out;
-}
-@keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
-}
-.drag-handle {
-    width: 40px; height: 5px;
-    background: #e5e5ea;
-    border-radius: 3px;
-    margin: 0 auto 20px;
-}
-.sheet-title {
-    font-size: 20px; font-weight: 700; color: #1c1c1e; margin-bottom: 25px;
-}
-.contact-box {
-    display: flex; justify-content: space-between; align-items: center;
-    background: #f2f2f7;
-    border-radius: 16px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
-}
+.modal-content.bottom-sheet { position: absolute; bottom: 0; left: 0; right: 0; width: 100%; max-width: 480px; margin: 0 auto; background: #fff; border-radius: 24px 24px 0 0; padding: 25px 20px 40px; animation: slideUp 0.3s ease-out; }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.drag-handle { width: 40px; height: 5px; background: #e5e5ea; border-radius: 3px; margin: 0 auto 20px; }
+.sheet-title { font-size: 20px; font-weight: 700; color: #1c1c1e; margin-bottom: 25px; }
+.contact-box { display: flex; justify-content: space-between; align-items: center; background: #f2f2f7; border-radius: 16px; padding: 16px 20px; margin-bottom: 12px; }
 .contact-info { text-align: left; }
 .contact-info .role { display: block; font-size: 12px; color: #8e8e93; margin-bottom: 2px; }
 .contact-info .name { font-size: 17px; font-weight: 700; color: #1c1c1e; }
 .contact-actions { display: flex; gap: 10px; }
-.btn-icon {
-    display: flex; align-items: center; justify-content: center;
-    width: 44px; height: 44px;
-    background: #fff;
-    border-radius: 50%;
-    text-decoration: none;
-    font-size: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-.btn-close-sheet {
-    width: 100%; background: #e5e5ea; color: #1c1c1e;
-    border: none; padding: 16px; border-radius: 14px;
-    font-size: 17px; font-weight: 600; margin-top: 15px; cursor: pointer;
-}
+.btn-icon { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #fff; border-radius: 50%; text-decoration: none; font-size: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.btn-close-sheet { width: 100%; background: #e5e5ea; color: #1c1c1e; border: none; padding: 16px; border-radius: 14px; font-size: 17px; font-weight: 600; margin-top: 15px; cursor: pointer; }
