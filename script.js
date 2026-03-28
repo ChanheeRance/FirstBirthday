@@ -70,44 +70,58 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initializeEvent() {
-    document.querySelector('.baby-name').textContent = eventConfig.babyName;
+    // 1. 아기 이름 및 메인 이미지
+    const babyNameEl = document.querySelector('.baby-name');
+    if(babyNameEl) babyNameEl.textContent = eventConfig.babyName;
+    
     document.querySelectorAll('.main-image').forEach(el => {
         el.src = eventConfig.babyImage;
     });
-
+    
+    // 2. 행사 날짜 및 시간 포맷팅
     const eventDate = eventConfig.event.date;
-    const dateStr = `${eventDate.getFullYear()}.${String(eventDate.getMonth() + 1).padStart(2, '0')}.${String(eventDate.getDate()).padStart(2, '0')}`;
+    const dateStr = `${eventDate.getFullYear()}.${String(eventDate.getMonth()+1).padStart(2,'0')}.${String(eventDate.getDate()).padStart(2,'0')}`;
     const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토'][eventDate.getDay()];
-    document.querySelector('.event-time').textContent = `${dateStr} (${dayOfWeek}) ${eventConfig.event.time}`;
-
-    const placeEl = document.querySelector('.event-place');
-    placeEl.innerHTML = `${eventConfig.event.place}<br>${eventConfig.event.hallName}`;
-
+    
+    const eventTimeEl = document.querySelector('.event-time');
+    if(eventTimeEl) eventTimeEl.textContent = `${dateStr} (${dayOfWeek}) ${eventConfig.event.time}`;
+    
+    // 3. 행사 장소
+    document.querySelectorAll('.event-place').forEach(el => {
+        el.innerHTML = `${eventConfig.event.place}<br>${eventConfig.event.hallName}`;
+    });
+    
+    // 4. 부모님 이름
     const parentStr = `아빠 ${eventConfig.parents.father.name} <span class="dot">·</span> 엄마 ${eventConfig.parents.mother.name}`;
     document.querySelectorAll('.parents-name, .parents-sign').forEach(el => {
         el.innerHTML = parentStr;
     });
-
-    document.querySelector('.calendar-date').textContent = `${dateStr} ${dayOfWeek}요일 ${eventConfig.event.time}`;
-    document.querySelector('.calendar-place').textContent = `${eventConfig.event.place} ${eventConfig.event.hallName}`;
-
-    document.querySelector('#section-comments .section-title').textContent = eventConfig.babyName + '의 생일을 축하해주세요!';
-
-    // 방명록 섹션이 존재할 때만 실행
+    
+    // 5. 캘린더 상단 날짜
+    const calendarDateEl = document.querySelector('.calendar-date');
+    if(calendarDateEl) calendarDateEl.textContent = `${dateStr} ${dayOfWeek}요일 ${eventConfig.event.time}`;
+    
+    // [수정됨] .calendar-place 요소가 HTML에 없을 수 있으므로 방어 코드 추가
+    const calendarPlaceEl = document.querySelector('.calendar-place');
+    if(calendarPlaceEl) {
+        calendarPlaceEl.textContent = `${eventConfig.event.place} ${eventConfig.event.hallName}`;
+    }
+    
+    // [수정됨] 방명록 섹션이 주석처리 되어있으므로 방어 코드 추가
     const commentsTitleEl = document.querySelector('#section-comments .section-title');
-    if (commentsTitleEl) {
+    if(commentsTitleEl) {
         commentsTitleEl.textContent = eventConfig.babyName + '의 생일을 축하해주세요!';
     }
-
-    // 계좌 섹션이 존재할 때만 실행
+    
+    // [수정됨] 계좌 섹션이 주석처리 되어있으므로 방어 코드 추가
     const fatherAccEl = document.getElementById('father-acc');
-    if (fatherAccEl) {
+    if(fatherAccEl) {
         fatherAccEl.querySelector('p').innerHTML = `${eventConfig.parents.father.name}<br><strong>${eventConfig.accounts.father.bank} ${eventConfig.accounts.father.account}</strong>`;
         fatherAccEl.querySelector('button').onclick = () => copyText(eventConfig.accounts.father.account.replace('-', ''));
     }
-
+    
     const motherAccEl = document.getElementById('mother-acc');
-    if (motherAccEl) {
+    if(motherAccEl) {
         motherAccEl.querySelector('p').innerHTML = `${eventConfig.parents.mother.name}<br><strong>${eventConfig.accounts.mother.bank} ${eventConfig.accounts.mother.account}</strong>`;
         motherAccEl.querySelector('button').onclick = () => copyText(eventConfig.accounts.mother.account.replace('-', ''));
     }
