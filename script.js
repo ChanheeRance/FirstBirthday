@@ -89,7 +89,7 @@ function initializeEvent() {
     });
     
     document.querySelector('.calendar-date').textContent = `${dateStr} ${dayOfWeek}요일 ${eventConfig.event.time}`;
-    document.querySelector('.calendar-place').textContent = eventConfig.event.place;
+    document.querySelector('.calendar-place').textContent = `${eventConfig.event.place} ${eventConfig.event.hallName}`;
     
     document.querySelector('#section-comments .section-title').textContent = eventConfig.babyName + '의 생일을 축하해주세요!';
     
