@@ -53,12 +53,6 @@ const galleryPhotos = [
     './images/20260219_155011.jpg', './images/main_1.jpg', './images/20260219_155011.jpg'
 ];
 
-// 방명록 초기 데이터 (날짜 2026년으로 조정)
-const initialComments = [
-    { name: '할머니', text: eventConfig.babyName + '아 첫 생일을 축하해!', date: '2026.04.01' },
-    { name: '삼촌', text: eventConfig.babyName + '이의 생일 너무 축하하고~ 건강하고 밝게 잘 자라렴!', date: '2026.04.02' }
-];
-
 // --- 초기화 ---
 document.addEventListener('DOMContentLoaded', () => {
     initializeEvent();
@@ -66,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     calcDday();
     buildGrowth();
     buildGalleryPreview();
-    renderComments();
 });
 
 function initializeEvent() {
@@ -89,17 +82,11 @@ function initializeEvent() {
     });
     
     document.querySelector('.calendar-date').textContent = `${dateStr} ${dayOfWeek}요일 ${eventConfig.event.time}`;
-    document.querySelector('.calendar-place').textContent = eventConfig.event.place;
     
-    document.querySelector('#section-comments .section-title').textContent = eventConfig.babyName + '의 생일을 축하해주세요!';
+    // [수정된 부분] 자바스크립트가 로드될 때 '튜울립홀'도 함께 표시되도록 수정
+    document.querySelector('.calendar-place').textContent = `${eventConfig.event.place} ${eventConfig.event.hallName}`;
     
-    const fatherAccEl = document.getElementById('father-acc');
-    fatherAccEl.querySelector('p').innerHTML = `${eventConfig.parents.father.name}<br><strong>${eventConfig.accounts.father.bank} ${eventConfig.accounts.father.account}</strong>`;
-    fatherAccEl.querySelector('button').onclick = () => copyText(eventConfig.accounts.father.account.replace('-', ''));
-    
-    const motherAccEl = document.getElementById('mother-acc');
-    motherAccEl.querySelector('p').innerHTML = `${eventConfig.parents.mother.name}<br><strong>${eventConfig.accounts.mother.bank} ${eventConfig.accounts.mother.account}</strong>`;
-    motherAccEl.querySelector('button').onclick = () => copyText(eventConfig.accounts.mother.account.replace('-', ''));
+    // [삭제된 부분] 아래에 있던 계좌 설정(fatherAccEl, motherAccEl) 및 댓글 타이틀 설정 코드는 모두 지웁니다.
 }
 
 function openModal(id) { document.getElementById(id).style.display = 'block'; }
@@ -209,43 +196,6 @@ function escapeHTML(str) {
     return str.replace(/[&<>'"]/g, 
         tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
     );
-}
-
-function renderComments() {
-    const container = document.getElementById('comment-list');
-    let html = '';
-    initialComments.forEach(c => {
-        html += `
-            <div class="comment-item">
-                <div class="comment-head">
-                    <strong>From. ${escapeHTML(c.name)}</strong>
-                    <span>${c.date}</span>
-                </div>
-                <div class="comment-body">${escapeHTML(c.text)}</div>
-            </div>
-        `;
-    });
-    container.innerHTML = html;
-}
-
-function addComment() {
-    const name = document.getElementById('guest-name').value;
-    const msg = document.getElementById('guest-msg').value;
-    
-    if(!name || !msg) {
-        alert("이름과 메시지를 모두 입력해주세요.");
-        return;
-    }
-
-    const today = new Date();
-    const dateStr = `${today.getFullYear()}.${String(today.getMonth()+1).padStart(2,'0')}.${String(today.getDate()).padStart(2,'0')}`;
-
-    initialComments.unshift({ name: name, text: msg, date: dateStr });
-    renderComments();
-    
-    document.getElementById('guest-name').value = '';
-    document.getElementById('guest-msg').value = '';
-    closeModal('commentModal');
 }
 
 // ====================================
