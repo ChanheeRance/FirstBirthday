@@ -3,15 +3,15 @@
 // ====================================
 const eventConfig = {
     // 기본 정보
-    babyName: '정찬희',           
+    babyName: '정찬희',
     babyImage: './images/main_1.jpg',   // 경로 수정됨
-    
+
     // 부모 정보
     parents: {
         father: { name: '정헌규', phone: '010-2325-4861' },
         mother: { name: '박미래', phone: '010-5186-5538' }
     },
-    
+
     // 행사 정보
     event: {
         date: new Date(2026, 3, 25),  // 2026년 4월 25일
@@ -19,18 +19,18 @@ const eventConfig = {
         place: '플로렌스 오목교점',
         hallName: '튜울립홀'
     },
-    
+
     // 주소 정보 (업데이트됨)
     address: {
         full: '서울 영등포구 영등포로 33 목동비즈타워 8층',
         car: '목동비즈타워 내 주차장 이용',
         bus: [
-            '관악고등학교(오목교역 방면) - 640, 650, 5012, 5616, 6211, 6625, 6628, 6629, 6630, 6640B', 
+            '관악고등학교(오목교역 방면) - 640, 650, 5012, 5616, 6211, 6625, 6628, 6629, 6630, 6640B',
             '관악고등학교(양평신동아아파트 방면) - 640, 650, 5012, 6211, 6625, 6628, 6629, 6630, 6640A'
         ],
         subway: '5호선 양평역 2번출구 도보 5분'
     },
-    
+
     // 계좌 정보
     accounts: {
         father: { bank: '국민', account: '000-0000-000000', name: '정헌규' },
@@ -58,32 +58,32 @@ const growthData = [
 
 // 갤러리 이미지 데이터 (경로 수정됨)
 const galleryPhotos = [
-'./images/gallery/20250131_150748.jpg',
-'./images/gallery/20250516_133236.jpg',
-'./images/gallery/20250524_123034.jpg',
-'./images/gallery/20250608_123047.jpg',
-'./images/gallery/20250619_171542.jpg',
-'./images/gallery/20250619_172716.jpg',
-'./images/gallery/20250619_174239.jpg',
-'./images/gallery/20250809_150943.jpg',
-'./images/gallery/20250815_150940.jpg',
-'./images/gallery/20250815_152611.jpg',
-'./images/gallery/20250816_121819.jpg',
-'./images/gallery/20250927_123149.jpg',
-'./images/gallery/20251021_213104.jpg',
-'./images/gallery/20251031_100952.jpg',
-'./images/gallery/20251121_151441.jpg',
-'./images/gallery/20251122_135807.jpg',
-'./images/gallery/20251208_133008.jpg',
-'./images/gallery/20251221_145651.jpg',
-'./images/gallery/20251221_163057.jpg',
-'./images/gallery/20251224_115742.jpg',
-'./images/gallery/20260105_161016.jpg',
-'./images/gallery/20260217_185914.jpg',
-'./images/gallery/20260219_152156.jpg',
-'./images/gallery/20260219_155011.jpg',
-'./images/gallery/20260223_162802.jpg',
-'./images/gallery/20260302_175116.jpg'
+    './images/gallery/20250131_150748.jpg',
+    './images/gallery/20250516_133236.jpg',
+    './images/gallery/20250524_123034.jpg',
+    './images/gallery/20250608_123047.jpg',
+    './images/gallery/20250619_171542.jpg',
+    './images/gallery/20250619_172716.jpg',
+    './images/gallery/20250619_174239.jpg',
+    './images/gallery/20250809_150943.jpg',
+    './images/gallery/20250815_150940.jpg',
+    './images/gallery/20250815_152611.jpg',
+    './images/gallery/20250816_121819.jpg',
+    './images/gallery/20250927_123149.jpg',
+    './images/gallery/20251021_213104.jpg',
+    './images/gallery/20251031_100952.jpg',
+    './images/gallery/20251121_151441.jpg',
+    './images/gallery/20251122_135807.jpg',
+    './images/gallery/20251208_133008.jpg',
+    './images/gallery/20251221_145651.jpg',
+    './images/gallery/20251221_163057.jpg',
+    './images/gallery/20251224_115742.jpg',
+    './images/gallery/20260105_161016.jpg',
+    './images/gallery/20260217_185914.jpg',
+    './images/gallery/20260219_152156.jpg',
+    './images/gallery/20260219_155011.jpg',
+    './images/gallery/20260223_162802.jpg',
+    './images/gallery/20260302_175116.jpg'
 ];
 
 // --- 초기화 ---
@@ -100,25 +100,25 @@ function initializeEvent() {
     document.querySelectorAll('.main-image').forEach(el => {
         el.src = eventConfig.babyImage;
     });
-    
+
     const eventDate = eventConfig.event.date;
-    const dateStr = `${eventDate.getFullYear()}.${String(eventDate.getMonth()+1).padStart(2,'0')}.${String(eventDate.getDate()).padStart(2,'0')}`;
+    const dateStr = `${eventDate.getFullYear()}.${String(eventDate.getMonth() + 1).padStart(2, '0')}.${String(eventDate.getDate()).padStart(2, '0')}`;
     const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토'][eventDate.getDay()];
     document.querySelector('.event-time').textContent = `${dateStr} (${dayOfWeek}) ${eventConfig.event.time}`;
-    
+
     const placeEl = document.querySelector('.event-place');
     placeEl.innerHTML = `${eventConfig.event.place}<br>${eventConfig.event.hallName}`;
-    
+
     const parentStr = `아빠 ${eventConfig.parents.father.name} <span class="dot">·</span> 엄마 ${eventConfig.parents.mother.name}`;
     document.querySelectorAll('.parents-name, .parents-sign').forEach(el => {
         el.innerHTML = parentStr;
     });
-    
+
     document.querySelector('.calendar-date').textContent = `${dateStr} ${dayOfWeek}요일 ${eventConfig.event.time}`;
-    
+
     // [수정된 부분] 자바스크립트가 로드될 때 '튜울립홀'도 함께 표시되도록 수정
     document.querySelector('.calendar-place').textContent = `${eventConfig.event.place} ${eventConfig.event.hallName}`;
-    
+
     // [삭제된 부분] 아래에 있던 계좌 설정(fatherAccEl, motherAccEl) 및 댓글 타이틀 설정 코드는 모두 지웁니다.
 }
 
@@ -138,7 +138,7 @@ function buildCalendar() {
     const grid = document.getElementById('calendar-grid');
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     let html = '';
-    
+
     days.forEach(d => {
         let cls = 'cal-day';
         if (d === '일') cls += ' sun';
@@ -163,10 +163,10 @@ function buildCalendar() {
 
 function calcDday() {
     const today = new Date();
-    today.setHours(0,0,0,0);
+    today.setHours(0, 0, 0, 0);
     const timeDiff = dDayDate.getTime() - today.getTime();
     const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    
+
     const textEl = document.getElementById('d-day-text');
     const baby = eventConfig.babyName;
     if (daysDiff > 0) {
@@ -200,7 +200,7 @@ function buildGalleryPreview() {
     const container = document.getElementById('gallery-preview');
     let html = '';
     for (let i = 0; i < 6; i++) {
-        if(galleryPhotos[i]) {
+        if (galleryPhotos[i]) {
             html += `<img src="${galleryPhotos[i]}" alt="갤러리사진" onerror="this.src='https://via.placeholder.com/150'" onclick="openGalleryModal(${i})">`;
         }
     }
@@ -226,7 +226,7 @@ function updateSlider() {
 
 // XSS 방지용 이스케이프 함수
 function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, 
+    return str.replace(/[&<>'"]/g,
         tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
     );
 }
@@ -234,9 +234,40 @@ function escapeHTML(str) {
 // ====================================
 // 모달 외부(어두운 배경) 클릭 시 닫기 기능
 // ====================================
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     // 클릭한 요소가 'modal' 클래스를 가진 어두운 배경 자체일 경우
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
     }
 });
+  //  링크 and 카톡 복사
+  // 1. 카카오 초기화 (여기 YOUR_APP_KEY를 실제 키로 바꾸세요)
+  Kakao.init("5c75410e0e94618049d381d090a204bf");
+// 3. 카카오톡 공유 기능
+document
+    .getElementById("kakaoShareBtn")
+    .addEventListener("click", function () {
+        Kakao.Share.sendDefault({
+            objectType: "feed",
+            content: {
+                title: response.main.kakao_subject,
+                description: response.main.kakao_content,
+                imageUrl: 'https://g-day.co.kr/kr' + response.main.kakaoThumbnailPreview.replace('../..', ''), // 썸네일 이미지 URL
+                link: {
+                    mobileWebUrl: window.location.href,
+                    webUrl: window.location.href,
+                },
+                imageWidth: 300,
+                imageHeight: 400,
+            },
+            buttons: [
+                {
+                    title: "웹으로 보기",
+                    link: {
+                        mobileWebUrl: window.location.href,
+                        webUrl: window.location.href,
+                    },
+                },
+            ],
+        });
+    });
