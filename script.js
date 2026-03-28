@@ -242,7 +242,7 @@ window.addEventListener('click', function (event) {
 });
   //  링크 and 카톡 복사
   // 1. 카카오 초기화 (여기 YOUR_APP_KEY를 실제 키로 바꾸세요)
-  Kakao.init("5c75410e0e94618049d381d090a204bf");
+  Kakao.init("42d76a333893a73797539292454b253a");
 // 3. 카카오톡 공유 기능
 document
     .getElementById("kakaoShareBtn")
@@ -252,7 +252,7 @@ document
             content: {
                 title: response.main.kakao_subject,
                 description: response.main.kakao_content,
-                imageUrl: 'https://g-day.co.kr/kr' + response.main.kakaoThumbnailPreview.replace('../..', ''), // 썸네일 이미지 URL
+                imageUrl: './images/main_1.jpg', // 공유할 이미지 URL (경로 수정됨)
                 link: {
                     mobileWebUrl: window.location.href,
                     webUrl: window.location.href,
