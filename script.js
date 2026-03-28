@@ -3,15 +3,15 @@
 // ====================================
 const eventConfig = {
     // 기본 정보
-    babyName: '정찬희',           
+    babyName: '정찬희',
     babyImage: './images/main_1.jpg',   // 경로 수정됨
-    
+
     // 부모 정보
     parents: {
         father: { name: '정헌규', phone: '010-2325-4861' },
         mother: { name: '박미래', phone: '010-5186-5538' }
     },
-    
+
     // 행사 정보
     event: {
         date: new Date(2026, 3, 25),  // 2026년 4월 25일
@@ -19,18 +19,18 @@ const eventConfig = {
         place: '플로렌스 오목교점',
         hallName: '튜울립홀'
     },
-    
+
     // 주소 정보 (업데이트됨)
     address: {
         full: '서울 영등포구 영등포로 33 목동비즈타워 8층',
         car: '목동비즈타워 내 주차장 이용',
         bus: [
-            '관악고등학교(오목교역 방면) - 640, 650, 5012, 5616, 6211, 6625, 6628, 6629, 6630, 6640B', 
+            '관악고등학교(오목교역 방면) - 640, 650, 5012, 5616, 6211, 6625, 6628, 6629, 6630, 6640B',
             '관악고등학교(양평신동아아파트 방면) - 640, 650, 5012, 6211, 6625, 6628, 6629, 6630, 6640A'
         ],
         subway: '5호선 양평역 2번출구 도보 5분'
     },
-    
+
     // 계좌 정보
     accounts: {
         father: { bank: '국민', account: '000-0000-000000', name: '정헌규' },
@@ -49,7 +49,7 @@ const growthData = [
 
 // 갤러리 이미지 데이터 (경로 수정됨)
 const galleryPhotos = [
-    './images/main_1.jpg', './images/20260219_155011.jpg', './images/main_1.jpg', 
+    './images/main_1.jpg', './images/20260219_155011.jpg', './images/main_1.jpg',
     './images/20260219_155011.jpg', './images/main_1.jpg', './images/20260219_155011.jpg'
 ];
 
@@ -74,32 +74,43 @@ function initializeEvent() {
     document.querySelectorAll('.main-image').forEach(el => {
         el.src = eventConfig.babyImage;
     });
-    
+
     const eventDate = eventConfig.event.date;
-    const dateStr = `${eventDate.getFullYear()}.${String(eventDate.getMonth()+1).padStart(2,'0')}.${String(eventDate.getDate()).padStart(2,'0')}`;
+    const dateStr = `${eventDate.getFullYear()}.${String(eventDate.getMonth() + 1).padStart(2, '0')}.${String(eventDate.getDate()).padStart(2, '0')}`;
     const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토'][eventDate.getDay()];
     document.querySelector('.event-time').textContent = `${dateStr} (${dayOfWeek}) ${eventConfig.event.time}`;
-    
+
     const placeEl = document.querySelector('.event-place');
     placeEl.innerHTML = `${eventConfig.event.place}<br>${eventConfig.event.hallName}`;
-    
+
     const parentStr = `아빠 ${eventConfig.parents.father.name} <span class="dot">·</span> 엄마 ${eventConfig.parents.mother.name}`;
     document.querySelectorAll('.parents-name, .parents-sign').forEach(el => {
         el.innerHTML = parentStr;
     });
-    
+
     document.querySelector('.calendar-date').textContent = `${dateStr} ${dayOfWeek}요일 ${eventConfig.event.time}`;
     document.querySelector('.calendar-place').textContent = `${eventConfig.event.place} ${eventConfig.event.hallName}`;
-    
+
     document.querySelector('#section-comments .section-title').textContent = eventConfig.babyName + '의 생일을 축하해주세요!';
-    
+
+    // 방명록 섹션이 존재할 때만 실행
+    const commentsTitleEl = document.querySelector('#section-comments .section-title');
+    if (commentsTitleEl) {
+        commentsTitleEl.textContent = eventConfig.babyName + '의 생일을 축하해주세요!';
+    }
+
+    // 계좌 섹션이 존재할 때만 실행
     const fatherAccEl = document.getElementById('father-acc');
-    fatherAccEl.querySelector('p').innerHTML = `${eventConfig.parents.father.name}<br><strong>${eventConfig.accounts.father.bank} ${eventConfig.accounts.father.account}</strong>`;
-    fatherAccEl.querySelector('button').onclick = () => copyText(eventConfig.accounts.father.account.replace('-', ''));
-    
+    if (fatherAccEl) {
+        fatherAccEl.querySelector('p').innerHTML = `${eventConfig.parents.father.name}<br><strong>${eventConfig.accounts.father.bank} ${eventConfig.accounts.father.account}</strong>`;
+        fatherAccEl.querySelector('button').onclick = () => copyText(eventConfig.accounts.father.account.replace('-', ''));
+    }
+
     const motherAccEl = document.getElementById('mother-acc');
-    motherAccEl.querySelector('p').innerHTML = `${eventConfig.parents.mother.name}<br><strong>${eventConfig.accounts.mother.bank} ${eventConfig.accounts.mother.account}</strong>`;
-    motherAccEl.querySelector('button').onclick = () => copyText(eventConfig.accounts.mother.account.replace('-', ''));
+    if (motherAccEl) {
+        motherAccEl.querySelector('p').innerHTML = `${eventConfig.parents.mother.name}<br><strong>${eventConfig.accounts.mother.bank} ${eventConfig.accounts.mother.account}</strong>`;
+        motherAccEl.querySelector('button').onclick = () => copyText(eventConfig.accounts.mother.account.replace('-', ''));
+    }
 }
 
 function openModal(id) { document.getElementById(id).style.display = 'block'; }
@@ -118,7 +129,7 @@ function buildCalendar() {
     const grid = document.getElementById('calendar-grid');
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     let html = '';
-    
+
     days.forEach(d => {
         let cls = 'cal-day';
         if (d === '일') cls += ' sun';
@@ -143,10 +154,10 @@ function buildCalendar() {
 
 function calcDday() {
     const today = new Date();
-    today.setHours(0,0,0,0);
+    today.setHours(0, 0, 0, 0);
     const timeDiff = dDayDate.getTime() - today.getTime();
     const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    
+
     const textEl = document.getElementById('d-day-text');
     const baby = eventConfig.babyName;
     if (daysDiff > 0) {
@@ -180,7 +191,7 @@ function buildGalleryPreview() {
     const container = document.getElementById('gallery-preview');
     let html = '';
     for (let i = 0; i < 6; i++) {
-        if(galleryPhotos[i]) {
+        if (galleryPhotos[i]) {
             html += `<img src="${galleryPhotos[i]}" alt="갤러리사진" onerror="this.src='https://via.placeholder.com/150'" onclick="openGalleryModal(${i})">`;
         }
     }
@@ -206,7 +217,7 @@ function updateSlider() {
 
 // XSS 방지용 이스케이프 함수
 function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, 
+    return str.replace(/[&<>'"]/g,
         tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
     );
 }
@@ -231,18 +242,18 @@ function renderComments() {
 function addComment() {
     const name = document.getElementById('guest-name').value;
     const msg = document.getElementById('guest-msg').value;
-    
-    if(!name || !msg) {
+
+    if (!name || !msg) {
         alert("이름과 메시지를 모두 입력해주세요.");
         return;
     }
 
     const today = new Date();
-    const dateStr = `${today.getFullYear()}.${String(today.getMonth()+1).padStart(2,'0')}.${String(today.getDate()).padStart(2,'0')}`;
+    const dateStr = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`;
 
     initialComments.unshift({ name: name, text: msg, date: dateStr });
     renderComments();
-    
+
     document.getElementById('guest-name').value = '';
     document.getElementById('guest-msg').value = '';
     closeModal('commentModal');
@@ -251,7 +262,7 @@ function addComment() {
 // ====================================
 // 모달 외부(어두운 배경) 클릭 시 닫기 기능
 // ====================================
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     // 클릭한 요소가 'modal' 클래스를 가진 어두운 배경 자체일 경우
     if (event.target.classList.contains('modal')) {
         event.target.style.display = 'none';
