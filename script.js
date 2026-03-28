@@ -240,34 +240,3 @@ window.addEventListener('click', function (event) {
         event.target.style.display = 'none';
     }
 });
-  //  링크 and 카톡 복사
-  // 1. 카카오 초기화 (여기 YOUR_APP_KEY를 실제 키로 바꾸세요)
-  Kakao.init("42d76a333893a73797539292454b253a");
-// 3. 카카오톡 공유 기능
-document
-    .getElementById("kakaoShareBtn")
-    .addEventListener("click", function () {
-        Kakao.Share.sendDefault({
-            objectType: "feed",
-            content: {
-                title: response.main.kakao_subject,
-                description: response.main.kakao_content,
-                imageUrl: './images/main_1.jpg', // 공유할 이미지 URL (경로 수정됨)
-                link: {
-                    mobileWebUrl: window.location.href,
-                    webUrl: window.location.href,
-                },
-                imageWidth: 300,
-                imageHeight: 400,
-            },
-            buttons: [
-                {
-                    title: "웹으로 보기",
-                    link: {
-                        mobileWebUrl: window.location.href,
-                        webUrl: window.location.href,
-                    },
-                },
-            ],
-        });
-    });
